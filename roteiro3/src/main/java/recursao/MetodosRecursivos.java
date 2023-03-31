@@ -2,10 +2,18 @@ package recursao;
 
 public class MetodosRecursivos {
 
-	public int calcularSomaArray(int[] array){
+	public int calcularSomaArray(int[] array, int indice){
 		int result = 0;
-		// TODO ESCREVA AQUI O CÓDIGO (USANDO RECURSAO) PARA CALCULAR A SOMA
-		// DOS EMENTOS DE UM ARRAY
+		int size = array.length - 1;
+		if (indice >= 0){
+			result += calcularSomaArray(array, indice - 1) + array[indice];
+		}
+		return  result;
+	}
+
+	public int calcularSomaArray(int[] array1){
+		int result = 0;
+		result = calcularSomaArray(array1, array1.length-1);
 		return result;
 	}
 	public long calcularFatorial(int n) {
@@ -25,11 +33,21 @@ public class MetodosRecursivos {
 		return result;
 	}
 
+	public int countNotNull(Object[] array, int indice){
+		int result = 0;
+		int size = array.length - 1;
+		if (indice >= 0){
+			result += countNotNull(array, indice - 1);
+		if (array[indice] == null)
+			return result += 1;
+		}
+		return  result;
+	}
 	public int countNotNull(Object[] array) {
 		int result = 0;
-		// TODO IMPLEMENTE AQUI O CODIGO QUE CONTA (USANDO RECURSAO) A
-		// QUANTIDADE DE ELEMENTOS NAO NULOS
-		// DE UM ARRAY DE OBJETOS RECEBIDO COMO PARAMETRO
+
+		result = countNotNull(array, array.length -1);
+
 		return result;
 	}
 
@@ -43,19 +61,21 @@ public class MetodosRecursivos {
 
 	public double progressaoAritmetica(double termoInicial, double razao, int n) {
 		double result = 0;
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
-		// TERMO
-		// DA PROGRESSAO ARITMETICA, DADO O TERMO INICIAL E A RAZAO
-		// VOCE NAO PODE USAR A FORMULA QUE CALCULA O N-ESIMO TERMO. DEVE USAR RECURSAO
+		if (n == 0) {
+			result = termoInicial;
+		}
+		else{
+			result += progressaoAritmetica(termoInicial, razao, n - 1) + razao;
+		}
 		return result;
 	}
 
 	public double progressaoGeometrica(double termoInicial, double razao, int n) {
 		double result = 1;
-		// TODO IMPLEMENTE SEU CODIGO (USANDO RECURSAO) DE ENCONTRAR O n-ESIMO
-		// TERMO
-		// DA PROGRESSAO GEOMETRICA, DADO O TERMO INICIAL E A RAZAO
-		// VOCE NAO PODE USAR A FORMULA QUE CALCULA O N-ESIMO TERMO. DEVE USAR RECURSAO
+		result *= termoInicial;
+		if (n >= 1){
+			result *= progressaoGeometrica(termoInicial, razao, n -1) * razao;
+		}
 		return result;
 	}
 	
