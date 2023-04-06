@@ -25,7 +25,7 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
 			} else {
 				for (int h = rightIndex; h <= leftIndex; h--) {
 					if (array[i].compareTo(array[h]) < 0) {
-						Util.swap(array, h, i);
+						Util.swap(array, h, i)
 					}
 				}
 			}
