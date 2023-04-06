@@ -3,6 +3,8 @@ package sorting.variationsOfBubblesort;
 import sorting.AbstractSorting;
 import util.Util;
 
+import java.util.Arrays;
+
 /**
  * This bubble sort variation has two internal iterations. In the first, it
  * pushes big elements to the right, like the normal bubble sort does. Then in
@@ -23,9 +25,12 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends
 					}
 				}
 			} else {
-				for (int h = rightIndex; h <= leftIndex; h--) {
-					if (array[i].compareTo(array[h]) < 0) {
-						Util.swap(array, h, i)
+				for (int h = rightIndex; leftIndex < h; h--) {
+					if (array[h].compareTo(array[rightIndex - i]) < 0) {
+						System.out.println("Entrou" + h);
+						System.out.println(Arrays.toString(array));
+
+						Util.swap(array, rightIndex - i, h);
 					}
 				}
 			}

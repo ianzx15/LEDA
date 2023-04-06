@@ -78,7 +78,7 @@ public class StudentSortingTest {
 			if(array.length > 0){
 			copy1 = Arrays.copyOf(array, array.length);
 		}
-			implementation.sort(vetorFatia, 1, 4);
+			implementation.sort(vetorFatia);
 			Arrays.sort(copy1);
 			System.out.println("Correto = " + Arrays.toString(copy1));
 			System.out.println("Meu = " + Arrays.toString(array));
