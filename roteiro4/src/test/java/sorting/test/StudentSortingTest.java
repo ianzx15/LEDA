@@ -9,6 +9,9 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.simpleSorting.BubbleSort;
+import sorting.simpleSorting.InsertionSort;
+import sorting.simpleSorting.SelectionSort;
+import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
 
 public class StudentSortingTest {
 
@@ -40,9 +43,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
-		// null
-		this.implementation = new BubbleSort<>();
+		this.implementation = new BidirectionalBubbleSort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
@@ -73,12 +74,13 @@ public class StudentSortingTest {
 
 		public void fatiaTeste(Integer[] array){
 		Integer[] copy1 = {};
-		if(array.length > 0){
+			System.out.println("Original = " + Arrays.toString(array));
+			if(array.length > 0){
 			copy1 = Arrays.copyOf(array, array.length);
 		}
-		implementation.sort(vetorFatia, 1, 4);
-			Arrays.sort(copy1, 1, 5);
-			System.out.println("Cópia = " + Arrays.toString(copy1));
+			implementation.sort(vetorFatia, 1, 4);
+			Arrays.sort(copy1);
+			System.out.println("Correto = " + Arrays.toString(copy1));
 			System.out.println("Meu = " + Arrays.toString(array));
 			Assert.assertArrayEquals(copy1, array);
 
