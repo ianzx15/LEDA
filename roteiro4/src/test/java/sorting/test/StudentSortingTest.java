@@ -12,6 +12,7 @@ import sorting.simpleSorting.BubbleSort;
 import sorting.simpleSorting.InsertionSort;
 import sorting.simpleSorting.SelectionSort;
 import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
+import sorting.variationsOfBubblesort.RecursiveBubbleSort;
 
 public class StudentSortingTest {
 
@@ -43,7 +44,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new BidirectionalBubbleSort<>();
+		this.implementation = new RecursiveBubbleSort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
@@ -78,8 +79,8 @@ public class StudentSortingTest {
 			if(array.length > 0){
 			copy1 = Arrays.copyOf(array, array.length);
 		}
-			implementation.sort(vetorFatia);
-			Arrays.sort(copy1);
+			implementation.sort(vetorFatia,1,4);
+			Arrays.sort(copy1,1,5);
 			System.out.println("Correto = " + Arrays.toString(copy1));
 			System.out.println("Meu = " + Arrays.toString(array));
 			Assert.assertArrayEquals(copy1, array);
@@ -94,7 +95,7 @@ public class StudentSortingTest {
 	public void genericTest(Integer[] array) {
 		Integer[] copy1 = {};
 		if(array.length > 0){
-			copy1 = Arrays.copyOf(array, array.length);			
+			copy1 = Arrays.copyOf(array, array.length);
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
