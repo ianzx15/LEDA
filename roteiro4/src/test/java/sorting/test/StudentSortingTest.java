@@ -13,6 +13,7 @@ import sorting.simpleSorting.InsertionSort;
 import sorting.simpleSorting.SelectionSort;
 import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
 import sorting.variationsOfBubblesort.RecursiveBubbleSort;
+import sorting.variationsOfBubblesort.oddEvenBubblesort;
 import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
 
 public class StudentSortingTest {
@@ -45,7 +46,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new RecursiveSelectionSort<>();
+		this.implementation = new oddEvenBubblesort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
