@@ -1,6 +1,5 @@
 package sorting.test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import org.junit.Assert;
@@ -8,13 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.simpleSorting.BubbleSort;
 import sorting.simpleSorting.InsertionSort;
-import sorting.simpleSorting.SelectionSort;
-import sorting.variationsOfBubblesort.BidirectionalBubbleSort;
-import sorting.variationsOfBubblesort.RecursiveBubbleSort;
-import sorting.variationsOfBubblesort.oddEvenBubblesort;
-import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
+import sorting.variationsOfBubblesort.OddEvenBubblesort;
 
 public class StudentSortingTest {
 
@@ -46,7 +40,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new oddEvenBubblesort<>();
+		this.implementation = new InsertionSort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
