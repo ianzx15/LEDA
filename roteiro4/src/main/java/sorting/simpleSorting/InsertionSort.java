@@ -17,7 +17,6 @@ public class InsertionSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		for (int i = 1; i <= rightIndex; i++){
 			for (int j = rightIndex; j > leftIndex; j --){
 				if (j > leftIndex && array[j - 1].compareTo(array[j]) > 0) {
-					System.out.println(Arrays.toString(array));
 					Util.swap(array, j, j - 1);
 					j -= 1;
 				}

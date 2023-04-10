@@ -11,7 +11,6 @@ public class OddEvenBubblesort<T extends Comparable<T>> extends AbstractSorting<
                     Util.swap(array, j, j +1);
                 }
             }
-
             for (int h = leftIndex + 1; h < rightIndex; h+= 2){
                 if (array[h].compareTo(array[h + 1]) > 0){
                     Util.swap(array, h, h +1);

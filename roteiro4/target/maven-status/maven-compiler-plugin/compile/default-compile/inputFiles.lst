@@ -2,6 +2,7 @@
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/AbstractSorting.java
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/simpleSorting/BubbleSort.java
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/variationsOfSelectionsort/RecursiveSelectionSort.java
+/home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/variationsOfBubblesort/OddEvenBubblesort.java
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/variationsOfBubblesort/BidirectionalBubbleSort.java
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/sorting/variationsOfBubblesort/RecursiveBubbleSort.java
 /home/ian/leda-roteiros/LEDA/roteiro4/src/main/java/util/Util.java
