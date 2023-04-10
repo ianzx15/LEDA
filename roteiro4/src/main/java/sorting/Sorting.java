@@ -1,5 +1,4 @@
 package sorting;
-
 /**
  * The interface of all sorting algorithms. It contains only the signature of
  * the sort method, which must be implemented according to the exercice's

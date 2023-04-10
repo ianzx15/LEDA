@@ -3,6 +3,8 @@ package sorting.variationsOfBubblesort;
 import sorting.AbstractSorting;
 import util.Util;
 
+import java.util.Arrays;
+
 public class RecursiveBubbleSort<T extends Comparable<T>> extends
 		AbstractSorting<T> {
 
@@ -16,13 +18,16 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		for (int i = leftIndex; i < rightIndex; i++){
-			sort(array, leftIndex + 1, rightIndex);
+		System.out.println(Arrays.toString(array));
+		for (int i = leftIndex ; i < rightIndex - 1; i++){
 			if (array[i].compareTo(array[i + 1]) > 0){
 				Util.swap(array, i, i + 1);
+				System.out.println( i + ">" + (i +1) );
 			}
 		}
-
+		if (leftIndex < rightIndex - 1){
+			sort(array, leftIndex + 1, rightIndex);
+		}
 	}
 
 }

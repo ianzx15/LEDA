@@ -7,8 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
+import sorting.simpleSorting.BubbleSort;
 import sorting.simpleSorting.InsertionSort;
 import sorting.variationsOfBubblesort.OddEvenBubblesort;
+import sorting.variationsOfBubblesort.RecursiveBubbleSort;
+import sorting.variationsOfSelectionsort.RecursiveSelectionSort;
 
 public class StudentSortingTest {
 
@@ -40,7 +43,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new InsertionSort<>();
+		this.implementation = new RecursiveSelectionSort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
@@ -76,7 +79,7 @@ public class StudentSortingTest {
 			copy1 = Arrays.copyOf(array, array.length);
 		}
 			implementation.sort(vetorFatia,1,4);
-			Arrays.sort(copy1,1,5);
+			Arrays.sort(copy1,1,4);
 			System.out.println("Correto = " + Arrays.toString(copy1));
 			System.out.println("Meu = " + Arrays.toString(array));
 			Assert.assertArrayEquals(copy1, array);
