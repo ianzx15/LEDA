@@ -17,17 +17,17 @@ public class BidirectionalBubbleSort<T extends Comparable<T>> extends AbstractSo
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		for (int i = leftIndex; i <= rightIndex; i++) {
-				for (int j = i; j < rightIndex; j++ ){
-					if ((array[i].compareTo(array[i + 1]) > 0)){
-						Util.swap(array,i,j + 1);
+			for (int j = i; j < rightIndex; j++ ){
+					if ((array[j].compareTo(array[j + 1]) > 0)){
+						Util.swap(array,j,j + 1);
 					}
 				}
-				for (int h = rightIndex; h > leftIndex - 1; h--) {
-					if (array[rightIndex - i].compareTo(array[h]) > 0 && rightIndex - i >= leftIndex) {
-						Util.swap(array, rightIndex - i, h);
+			for (int h = rightIndex; h > leftIndex; h--) {
+					if (array[h - 1].compareTo(array[h]) > 0) {
+						Util.swap(array, h - 1, h);
 					}
 				}
-			}
 		}
+	}
 	}
 
