@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.divideAndConquer.MergeSort;
+import sorting.divideAndConquer.QuickSort;
 
 public class StudentSortingTest {
 
@@ -45,7 +46,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new MergeSort<>();
+		this.implementation = new QuickSort<>();
 	}
 	public void popularVetorOrdenadoCrescente(Integer[] arrayPadrao){
 		this.vetorOrdenadoCrescente = Arrays.copyOf(arrayPadrao, arrayPadrao.length);

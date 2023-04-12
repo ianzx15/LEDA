@@ -2,6 +2,8 @@ package sorting.divideAndConquer;
 
 import sorting.AbstractSorting;
 
+import java.util.Arrays;
+
 /**
  * Merge sort is based on the divide-and-conquer paradigm. The algorithm
  * consists of recursively dividing the unsorted list in the middle, sorting
@@ -14,20 +16,21 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		if (leftIndex < rightIndex){
 			int mid = (leftIndex + rightIndex) / 2;
 			sort(array, leftIndex, mid);
-			sort(array, rightIndex, mid + 1);
+			sort(array, mid + 1, rightIndex);
 			merge(array, leftIndex, mid, rightIndex);
 		}
 		}
 
-	public void merge(T[] array2, int left, int mid, int right){
+	private void merge(T[] array2, int left, int mid, int right){
 		int i = left;
 		int j = mid + 1;
-		int k = right;
-		T[] aux = (T[]) new Object[array2.length];
+		int k = left;
+		T[] aux = Arrays.copyOf(array2,array2.length);
 
-		while (i <= j && j <= right){
-			if (aux[k].compareTo(aux[j]) < 0){
+		while (i <= mid && j <= right){
+			if (aux[i].compareTo(aux[j]) <= 0){
 				array2[k] = aux[i];
+				i++;
 			}
 			else{
 				array2[k] = aux[j];
@@ -39,12 +42,12 @@ public class MergeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 		while (i <= mid){
 			array2[k] = aux[i];
 			i++;
-			j++;
+			k++;
 		}
 		while (j <= right){
 			array2[k] = aux[j];
-			i++;
 			j++;
+			k++;
 		}
 	}
 
