@@ -27,10 +27,10 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		if (leftIndex < rightIndex){
 			int midPivot = (leftIndex + rightIndex) / 2;
 			ordenaPivot(array, leftIndex, midPivot, rightIndex);
-			Util.swap(array, midPivot, rightIndex - 1);
-			int index_pivot = partition(array,leftIndex,rightIndex);
-			sort(array, leftIndex, midPivot - 1);
-			sort(array, midPivot + 1, rightIndex);
+			partition(array,leftIndex,rightIndex);
+			sort(array, leftIndex, midPivot);
+			sort(array,  midPivot + 1, rightIndex);
+
 
 		}
 	}
@@ -45,18 +45,20 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 		if (array[right].compareTo(array[mid]) < 0){
 			Util.swap(array, mid, right);
 		}
+		Util.swap(array, mid, right - 1);
 	}
-	private int partition(T[] array, int leftIndex, int rightIndex){
+	private void partition(T[] array, int leftIndex, int rightIndex){
 		T pivot = array[rightIndex - 1];
+		//System.out.println("LIMITES = " + leftIndex + "|"+ rightIndex);
 		int i = leftIndex;
 		for (int j = leftIndex + 1; j <= rightIndex; j++){
-			System.out.println(Arrays.toString(array));
+			//System.out.println("ARRAY[J] = " +  array[j] + "|PIVOT = " + pivot);
 			if (array[j].compareTo(pivot) <= 0){
 				i++;
 				Util.swap(array, j, i);
 			}
+//			System.out.println(Arrays.toString(array));
+//			System.out.println("");
 		}
-		Util.swap(array, leftIndex, i);
-		return i;
 	}
 }
