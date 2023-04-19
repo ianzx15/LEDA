@@ -22,7 +22,7 @@ public class CountingSort extends AbstractSorting<Integer> {
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
 		int max = Collections.max(Arrays.asList(array));
-		Integer[] frequencia = new Integer[max];
+		int[] frequencia = new int[max];
 		populaListaAuxiliar(array, frequencia);
 	}
 
