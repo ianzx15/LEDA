@@ -26,7 +26,7 @@ public class CountingSort extends AbstractSorting<Integer> {
 		populaListaAuxiliar(array, frequencia);
 	}
 
-	public void populaListaAuxiliar(Integer[] array, Integer[] frequencia){
+	public void populaListaAuxiliar(Integer[] array, int[] frequencia){
 		for (int j = 0; j <  array.length; j++){
 				frequencia[array[j] - 1] += 1;
 		}
