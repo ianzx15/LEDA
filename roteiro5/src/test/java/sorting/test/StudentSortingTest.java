@@ -9,6 +9,7 @@ import org.junit.Test;
 import sorting.AbstractSorting;
 import sorting.divideAndConquer.MergeSort;
 import sorting.divideAndConquer.QuickSort;
+import sorting.divideAndConquer.hybridMergesort.HybridMergeSort;
 import sorting.divideAndConquer.quicksort3.QuickSortMedianOfThree;
 
 public class StudentSortingTest {
@@ -23,6 +24,7 @@ public class StudentSortingTest {
 	private Integer[] vetorUnitario;
 	private Integer[] vetorOrdenadoCrescente;
 	private Integer[] vetorOrdenadoDecrescente;
+	private Integer[] vetorParZero;
 	public AbstractSorting<Integer> implementation;
 
 	@Before
@@ -38,6 +40,7 @@ public class StudentSortingTest {
 		popularVetorUnitario(new Integer[] {1});
 		popularVetorOrdenadoCrescente(new Integer[] {1,2,3,4,5});
 		popularVetorOrdenadoDecrescente(new Integer[] {5,4,3,2,1});
+		popularVetorParZero(new Integer[] {0,0});
 		getImplementation();
 	}
 
@@ -86,6 +89,9 @@ public class StudentSortingTest {
 				.copyOf(arrayPadrao, arrayPadrao.length);
 	}
 
+	public void popularVetorParZero(Integer[] arraryPadrao){
+		this.vetorParZero = Arrays.copyOf(arraryPadrao, arraryPadrao.length);
+	}
 	public void fatiaTeste(Integer[] array){
 		Integer[] copy1 = {};
 		if(array.length > 0){
@@ -170,4 +176,6 @@ public class StudentSortingTest {
 		genericTest(vetorOrdenadoDecrescente);
 	}
 
+	@Test
+	public void testSort12() {genericTest(vetorParZero);}
 }
