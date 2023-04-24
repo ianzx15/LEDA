@@ -21,39 +21,21 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		Integer[] maxFatia = Arrays.copyOfRange(array, leftIndex, rightIndex);
-		int max = Collections.max(Arrays.asList(maxFatia));
-		int[] frequencia = new int[max];
-		Integer[] copiaArray = Arrays.copyOf(array, array.length);
-		System.out.println(Arrays.toString(array));
-		for (int j = leftIndex; j < rightIndex; j++) {
-			frequencia[array[j] - 1] += 1;
+		if (array.length != 0) {
+			Integer[] listaFatia = Arrays.copyOfRange(array, leftIndex, rightIndex + 1);
+			int max = Collections.max(Arrays.asList(listaFatia));
+			int[] frequencia = new int[max + 1];
+			Integer[] copiaArray = Arrays.copyOf(array, array.length);
+			for (int j = leftIndex; j <= rightIndex; j++) {
+				frequencia[array[j]] += 1;
+			}
+			for (int n = 1; n < frequencia.length; n++) {
+				frequencia[n] = frequencia[n] + frequencia[n - 1];
+			}
+			for (int i = rightIndex; i >= leftIndex; i--) {
+				array[frequencia[copiaArray[i]] - 1 + leftIndex] = copiaArray[i];
+				frequencia[copiaArray[i]] -= 1;
+			}
 		}
-		for (int n = 1; n < frequencia.length; n++){
-			frequencia[n] = frequencia[n] + frequencia[n - 1];
-		}
-		for (int i = rightIndex - 1; i >= leftIndex; i--){
-			array[frequencia[copiaArray[i] - 1] - 1] = copiaArray[i];
-			frequencia[copiaArray[i] - 1] -= 1;
-		}
-		System.out.println(Arrays.toString(array));
-
-
-//		Integer[] maxFatia = Arrays.copyOfRange(array, leftIndex, rightIndex);
-//		int max = Collections.max(Arrays.asList(maxFatia));
-//		int[] frequencia = new int[max];
-//		int[] copiaArray = new int[array.length];
-//		System.out.println(Arrays.toString(array));
-//		for (int j = leftIndex; j < rightIndex; j++) {
-//			frequencia[array[j] - 1] += 1;
-//		}
-//		for (int n = 1; n < frequencia.length; n++){
-//			frequencia[n] = frequencia[n] + frequencia[n - 1];
-//		}
-//		for (int i = rightIndex -1; i >= leftIndex; i--){
-//			copiaArray[frequencia[array[i] - 1] - 1] = array[i];
-//			frequencia[array[i] - 1] -= 1;
-//		}
-//		System.out.println(Arrays.toString(copiaArray));
 	}
 }
