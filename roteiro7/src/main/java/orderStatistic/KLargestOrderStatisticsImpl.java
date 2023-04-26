@@ -46,6 +46,6 @@ public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLa
 	 * @return
 	 */
 	public T orderStatistics(T[] array, int k){
-
+	return  null;
 	}
 }
