@@ -22,19 +22,23 @@ public class CountingSort extends AbstractSorting<Integer> {
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
 		if (array.length != 0) {
+			System.out.println(Arrays.toString(array));
 			Integer[] listaFatia = Arrays.copyOfRange(array, leftIndex, rightIndex + 1);
 			int max = Collections.max(Arrays.asList(listaFatia));
 			int[] frequencia = new int[max + 1];
 			Integer[] copiaArray = Arrays.copyOf(array, array.length);
 			for (int j = leftIndex; j <= rightIndex; j++) {
 				frequencia[array[j]] += 1;
+
 			}
 			for (int n = 1; n < frequencia.length; n++) {
 				frequencia[n] = frequencia[n] + frequencia[n - 1];
 			}
+			System.out.println(Arrays.toString(frequencia));
 			for (int i = rightIndex; i >= leftIndex; i--) {
 				array[frequencia[copiaArray[i]] - 1 + leftIndex] = copiaArray[i];
 				frequencia[copiaArray[i]] -= 1;
+				System.out.println(copiaArray[i] - 1);
 			}
 		}
 	}

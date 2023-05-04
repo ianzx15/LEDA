@@ -52,6 +52,5 @@ public class Fila {
         a.enqueue(6);
         a.enqueue(73);
         a.dequeue();
-        System.out.println(Arrays.toString(a.array));
     }
 }

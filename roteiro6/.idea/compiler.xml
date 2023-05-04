@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="roteiro6" target="1.8" />
+      <module name="submission" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

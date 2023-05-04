@@ -45,7 +45,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new BidirectionalBubbleSort<>();
+		this.implementation = new InsertionSort<>();
 	}
 	public void populaVetorInverso(Integer[] arrayPadrao){
 		this.vetorInverso = Arrays.copyOf(arrayPadrao, arrayPadrao.length);

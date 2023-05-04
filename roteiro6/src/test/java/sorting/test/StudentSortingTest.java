@@ -10,6 +10,8 @@ import org.junit.Test;
 import sorting.AbstractSorting;
 import sorting.linearSorting.CountingSort;
 import sorting.linearSorting.ExtendedCountingSort;
+import sorting.orderStatistic.OrderStatisticsSelectionImpl;
+import sorting.src.main.java.orderStatistic.OrderStatisticsSelectionImpl;
 
 public class StudentSortingTest {
 
@@ -47,7 +49,7 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		this.implementation = new CountingSort();
+		this.implementation = new OrderStatisticsSelectionImpl<>();
 	}
 	public void popularVetorOrdenadoCrescente(Integer[] arrayPadrao){
 		this.vetorOrdenadoCrescente = Arrays.copyOf(arrayPadrao, arrayPadrao.length);
