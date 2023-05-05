@@ -2,6 +2,8 @@ package adt.queue;
 
 import adt.stack.Stack;
 import adt.stack.StackImpl;
+import adt.stack.StackOverflowException;
+import adt.stack.StackUnderflowException;
 
 public class QueueUsingStack<T> implements Queue<T> {
 
@@ -15,31 +17,69 @@ public class QueueUsingStack<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		stack1. (element);
+		if (isFull()){
+			throw new QueueOverflowException();
+		}
+		try{
+			stack1.push(element);
+		} catch (StackOverflowException e){
+			throw new QueueOverflowException();
+		}
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T removido = null;
+		if (isEmpty()){
+			throw new QueueUnderflowException();
+		}
+		try {
+			while (!stack1.isEmpty()) {
+				stack2.push(stack1.pop());
+			}
+			removido = stack2.pop();
+			while (!stack2.isEmpty()) {
+				stack1.push(stack2.pop());
+			}
+		} catch (StackUnderflowException | StackOverflowException e){
+			e.printStackTrace();
+		}
+		return removido;
 	}
 
 	@Override
 	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T removido = null;
+		try {
+			while (!stack1.isEmpty()) {
+				stack2.push(stack1.pop());
+			}
+			removido = stack2.top();
+			while (!stack2.isEmpty()) {
+				stack1.push(stack2.pop());
+			}
+		} catch (StackUnderflowException | StackOverflowException e){
+			e.printStackTrace();
+		}
+		return removido;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (stack1.isEmpty()){
+			return true;
+		} else{
+			return false;
+		}
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (stack1.isFull()){
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

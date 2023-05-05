@@ -31,12 +31,21 @@ public class StudentQueueTest {
 	}
 
 //	QueueImpl
+//	private void getImplementations() {
+//		// TODO O aluno deve ajustar aqui para instanciar sua implementação
+//		queue1 = new QueueImpl<Integer>(4);
+//		queue2 = new QueueImpl<Integer>(2);
+//		queue3 = new QueueImpl<Integer>(5);
+//	}
+
+//	QueueUsingStack
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = new QueueImpl<Integer>(4);
-		queue2 = new QueueImpl<Integer>(2);
-		queue3 = new QueueImpl<Integer>(5);
+		queue1 = new QueueUsingStack<>(4);
+		queue2 = new QueueUsingStack<>(2);
+		queue3 = new QueueUsingStack<>(5);
 	}
+
 
 	//QueueUsingStack
 //	private void getImplementations() {

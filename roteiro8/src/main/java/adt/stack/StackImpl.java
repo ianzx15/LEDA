@@ -13,7 +13,11 @@ public class StackImpl<T> implements Stack<T> {
 
 	@Override
 	public T top() {
-		return this.array[this.top];
+		if (this.top == -1){
+			return null;
+		}else{
+			return this.array[this.top];
+		}
 	}
 
 	@Override
@@ -44,7 +48,7 @@ public class StackImpl<T> implements Stack<T> {
 
 	@Override
 	public T pop() throws StackUnderflowException {
-		T result = this.array[top];
+		T result = top();
 		if (isEmpty()) {
 			throw new StackUnderflowException();
 		} else {
