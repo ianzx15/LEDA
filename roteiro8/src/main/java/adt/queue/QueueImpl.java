@@ -18,18 +18,12 @@ public class QueueImpl<T> implements Queue<T> {
 
 	@Override
 	public boolean isEmpty() {
-		if (tail == -1){
-			return true;
-		}
-		return false;
+		return tail == -1;
 	}
 
 	@Override
 	public boolean isFull() {
-		if (this.tail == this.array.length - 1){
-			return true;
-		}
-		return false;
+		return this.tail == this.array.length - 1;
 	}
 
 	private void shiftLeft() {

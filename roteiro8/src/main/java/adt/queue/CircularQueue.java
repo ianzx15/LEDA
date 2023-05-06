@@ -1,5 +1,7 @@
 package adt.queue;
 
+import java.util.Arrays;
+
 public class CircularQueue<T> implements Queue<T> {
 
 	private T[] array;
@@ -18,39 +20,52 @@ public class CircularQueue<T> implements Queue<T> {
 	public void enqueue(T element) throws QueueOverflowException {
 		if (isFull()) {
 			throw new QueueOverflowException();
-		}if (isEmpty()){
+		} if (isEmpty()){
 			head++;
-		} else{
-			tail = (tail + 1) % array.length ;
-			array[tail] = element;
 		}
+		tail = (tail + 1) % array.length ;
+		array[tail] = element;
+
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
 		T result = null;
-		if (head == -1){
+		if (isEmpty()){
 			throw new QueueUnderflowException();
+		}
+		if (head == tail){
+			result = array[head];
+			head = -1;
+			tail = -1;
 		} else{
 			result = array[head];
-			head++;
+			head = (head + 1) % array.length;
 		}
 		return result;
 	}
 
 	@Override
 	public T head() {
+		if (head == -1){
+			return null;
+		}
 		return this.array[head];
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this.tail > this.head + 1;
+		return head == -1;
 	}
 
 	@Override
 	public boolean isFull() {
-		return (this.tail + 1) % array.length == this.head;
+		if (head == 0 && tail == array.length - 1){
+			return true;
+		}if( head == tail && array.length == 1 && head != -1 && tail != -1){
+			return  true;
+		}
+		return false;
 	}
 
 }
