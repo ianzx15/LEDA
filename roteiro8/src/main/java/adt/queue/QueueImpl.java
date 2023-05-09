@@ -29,7 +29,6 @@ public class QueueImpl<T> implements Queue<T> {
 	private void shiftLeft() {
 		for (int i = 0; i < tail; i++){
 			array[i] = array[i + 1];
-			this.array[i + 1] = null;
 		}
 	}
 
