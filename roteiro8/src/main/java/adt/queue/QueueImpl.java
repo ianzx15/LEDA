@@ -35,11 +35,13 @@ public class QueueImpl<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		if (isFull()){
-			throw new QueueOverflowException();
-		}else{
-			this.tail++;
-			this.array[this.tail] = element;
+		if (element != null){
+			if (isFull()){
+				throw new QueueOverflowException();
+			}else{
+				this.tail++;
+				this.array[this.tail] = element;
+			}
 		}
 	}
 
