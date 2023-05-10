@@ -17,16 +17,15 @@ public class QueueUsingStack<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
-		if (element != null){
 			if (isFull()){
 				throw new QueueOverflowException();
+			} else if(element != null){
+				try{
+					stack1.push(element);
+				} catch (StackOverflowException e){
+					throw new QueueOverflowException();
+				}
 			}
-			try{
-				stack1.push(element);
-			} catch (StackOverflowException e){
-				throw new QueueOverflowException();
-			}
-		}
 	}
 
 	@Override

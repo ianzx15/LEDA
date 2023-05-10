@@ -64,14 +64,12 @@ public class StudentStackTest {
 		try {
 			stack1.push(new Integer(5));
 		} catch (StackOverflowException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = StackOverflowException.class)
 	public void testPushComErro() throws StackOverflowException {
-		//TESTAR COM APENAS UM ELEMENTO
 		stack2.push(new Integer(5));
 
 	}
@@ -81,7 +79,6 @@ public class StudentStackTest {
 		try {
 			assertEquals(new Integer(3), stack1.pop());
 		} catch (StackUnderflowException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

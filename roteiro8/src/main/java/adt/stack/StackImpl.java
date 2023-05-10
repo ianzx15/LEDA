@@ -34,7 +34,7 @@ public class StackImpl<T> implements Stack<T> {
 	public void push(T element) throws StackOverflowException {
 		if (isFull()){
 			throw new StackOverflowException();
-		} else{
+		} else if (element != null){
 			this.top++;
 			this.array[top] = element;
 		}
@@ -46,7 +46,6 @@ public class StackImpl<T> implements Stack<T> {
 		if (isEmpty()) {
 			throw new StackUnderflowException();
 		} else {
-			this.array[top] = null;
 			this.top--;
 		}
 		return result;

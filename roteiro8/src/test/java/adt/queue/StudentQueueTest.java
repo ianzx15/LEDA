@@ -35,28 +35,32 @@ public class StudentQueueTest {
 	}
 
 //	QueueImpl
+//	private void getImplementations() {
+//		// TODO O aluno deve ajustar aqui para instanciar sua implementação
+//		queue1 = new QueueUsingStack<>(4);
+//		queue2 = new QueueUsingStack<Integer>(2);
+//		queue3 = new QueueUsingStack<Integer>(5);
+//		queue4 = new QueueUsingStack<>(1);
+//	}
+
+//	QueueUsingStack
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = new QueueImpl<Integer>(4);
-		queue2 = new QueueImpl<Integer>(2);
-		queue3 = new QueueImpl<Integer>(5);
+		queue1 = new QueueImpl<>(4);
+		queue2 = new QueueImpl<>(2);
+		queue3 = new QueueImpl<>(5);
 		queue4 = new QueueImpl<>(1);
 	}
 
-//	QueueUsingStack
-//	private void getImplementations() {
-//		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-//		queue1 = new CircularQueue<>(4);
-//		queue2 = new CircularQueue<>(2);
-//		queue3 = new CircularQueue<>(5);
-//		queue4 = new CircularQueue<>(1);
-//	}
-
 	// MÉTODOS DE TESTE
 	@Test
-	public void testHead() {
-		//TESTAR COM APENAS UM ELEMENTO
-		assertEquals(new Integer(1), queue1.head());
+	public void testHead() throws QueueOverflowException, QueueUnderflowException {
+		queue4.enqueue(5);
+		assertEquals(new Integer(5), queue4.head());
+		queue4.dequeue();
+		queue4.head();
+
+
 
 	}
 

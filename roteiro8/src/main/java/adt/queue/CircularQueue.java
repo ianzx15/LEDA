@@ -18,16 +18,15 @@ public class CircularQueue<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
+		if (isFull()){
+			throw  new QueueOverflowException();
+		} else if(isEmpty()){
+			head ++;
+		}
 		if (element != null){
-			if (isFull()) {
-				throw new QueueOverflowException();
-			} if (isEmpty()){
-				head++;
-			}
-			tail = (tail + 1) % array.length ;
+			tail = (tail + 1) % array.length;
 			array[tail] = element;
 		}
-
 	}
 
 	@Override
