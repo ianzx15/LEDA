@@ -55,6 +55,8 @@ public class StudentQueueTest {
 	// MÉTODOS DE TESTE
 	@Test
 	public void testHead() throws QueueOverflowException, QueueUnderflowException {
+		assertEquals(new Integer(1), queue1.head());
+
 		queue4.enqueue(5);
 		assertEquals(new Integer(5), queue4.head());
 		queue4.dequeue();
