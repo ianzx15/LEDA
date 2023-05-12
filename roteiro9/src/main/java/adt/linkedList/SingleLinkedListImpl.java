@@ -16,11 +16,11 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public int size() {
 		int size = 0;
-		if (this.head.data != null){
-			SingleLinkedListNode aux = this.head;
+		if (!this.head.isNIL()){
+			SingleLinkedListNode aux = this.getHead();
 
-			while (aux.getData() != null) {
-				aux = aux.next;
+			while (!aux.isNIL()) {
+				aux = aux.getNext();
 				size++;
 			}
 		}
@@ -37,7 +37,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 					result = element;
 					break;
 				}
-				aux = aux.next;
+				aux = aux.getNext();
 			}
 		}
 		return result;
@@ -51,8 +51,8 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 				SingleLinkedListNode<T> newHead = new SingleLinkedListNode<>(element, this.head);
 				this.head = newHead;
 		} 	else{
-				while (auxHead.getNext() != null){
-					auxHead = auxHead.next;
+				while (!auxHead.isNIL()){
+					auxHead = auxHead.getNext();
 				}
 				auxHead.data = element;
 				auxHead.next = new SingleLinkedListNode<>();
@@ -66,8 +66,8 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 			SingleLinkedListNode aux = this.head;
 			if(search(element) != null){
 				while (!aux.isNIL() && !aux.data.equals(element)) {
-						aux.data = aux.next.data;
-						aux.next = aux.next.next;
+						aux.data = aux.getNext().getData();
+						aux.next = aux.getNext().getNext();
 					}
 			}
 		}
@@ -76,8 +76,16 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented!");
+		int i = 0;
+		T[] array = (T[]) new Object[size()];
+		SingleLinkedListNode aux = this.head;
+		while (i < size()){
+			if (!aux.isNIL())
+			array[i] = (T) aux.getData();
+			aux = aux.getNext();
+			i += 1;
+		}
+		return array;
 	}
 
 	public SingleLinkedListNode<T> getHead() {

@@ -19,12 +19,10 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 		lista1.insert(1);
 
 		// Lista com 1 elemento.
-		lista3.insert(1);
 	}
 
 	private void getImplementations() {
-		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		lista1 = null;
+		lista1 = new DoubleLinkedListImpl<>();
 		lista2 = null;
 		lista3 = null;
 	}
