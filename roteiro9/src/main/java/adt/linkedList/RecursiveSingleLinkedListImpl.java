@@ -17,38 +17,67 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public int size() {
-		if (next.isEmpty()){
-		return size();
+		int i = 0;
+		if (!this.isEmpty()){
+			i = 1 + this.getNext().size();
 		}
-		return 1 + size();
+		return i;
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null){
+			if (isEmpty()){
+				element = null;
+			} else{
+				if (getData() == null){
+					element = null;
+				} else if(getData() != null && !getData().equals(element)) {
+					element = getNext().search(element);
+				}
+			}
+		}
+		return element;
 	}
 
 	@Override
 	public void insert(T element) {
 		if (element != null){
+			if (this.isEmpty()){
+				setData(element);
+				setNext(new RecursiveSingleLinkedListImpl<>());
+			} else{
+				this.getNext().insert(element);
+			}
 		}
 	}
 
-	public T insertOdeioMinhaVida(T element){
-		if ()
-	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+			if (!getNext().isEmpty()){
+				getNext().remove(element);
+			} else{
+				setData(getNext().getData());
+				setNext(getNext().getNext());
+			}
 	}
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int len = size();
+		T[] arrayAux = (T[]) new Object[len];
+		return 	auxToArray(arrayAux, 0, len);
+
+	}
+
+	private T[] auxToArray(T[] array, int i, int size) {
+		if (i < size){
+			array[i] = getData();
+			getNext().auxToArray(array, i + 1, size);
+		}
+		return array;
+
 	}
 
 	public T getData() {
