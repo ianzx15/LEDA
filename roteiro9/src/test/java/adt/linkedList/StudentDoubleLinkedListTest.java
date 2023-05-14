@@ -23,7 +23,7 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 
 	private void getImplementations() {
 		lista1 = new DoubleLinkedListImpl<>();
-		lista2 = null;
+		lista2 = new DoubleLinkedListImpl<>();
 		lista3 = null;
 	}
 
@@ -33,12 +33,30 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	public void testInsertFirst() {
 		((DoubleLinkedList<Integer>) lista1).insertFirst(4);
 		Assert.assertArrayEquals(new Integer[] { 4, 3, 2, 1 }, lista1.toArray());
+		((DoubleLinkedList<Integer>) lista1).insertFirst(5);
+		Assert.assertArrayEquals(new Integer[] { 5, 4, 3, 2, 1 }, lista1.toArray());
+
+		((DoubleLinkedList<Integer>) lista2).insertFirst(4);
+		Assert.assertArrayEquals(new Integer[] {4}, lista2.toArray());
+
+
+
 	}
 
 	@Test
 	public void testRemoveFirst() {
+		//TESTAR QUANDO EXISTEM DOIS ELEMENTOS APENAS HEAD E LAST     OK
+		//QUANDO EXISTE APENAS UM ELEMENTO LAST = HEAD                OK
+
 		((DoubleLinkedList<Integer>) lista1).removeFirst();
 		Assert.assertArrayEquals(new Integer[] { 2, 1 }, lista1.toArray());
+		((DoubleLinkedList<Integer>) lista1).removeFirst();
+		Assert.assertArrayEquals(new Integer[] {1}, lista1.toArray());
+		((DoubleLinkedList<Integer>) lista1).removeFirst();
+		((DoubleLinkedList<Integer>) lista1).insertFirst(5);
+		Assert.assertArrayEquals(new Integer[] {5}, lista1.toArray());
+		((DoubleLinkedList<Integer>) lista1).removeFirst();
+		Assert.assertArrayEquals(new Integer[] {}, lista1.toArray());
 	}
 
 	@Test

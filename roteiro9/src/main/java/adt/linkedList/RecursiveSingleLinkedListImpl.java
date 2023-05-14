@@ -12,14 +12,15 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return getData() == null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (next.isEmpty()){
+		return size();
+		}
+		return 1 + size();
 	}
 
 	@Override
@@ -30,8 +31,12 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null){
+		}
+	}
+
+	public T insertOdeioMinhaVida(T element){
+		if ()
 	}
 
 	@Override
