@@ -11,6 +11,8 @@ public class StudentLinkedListTest {
 	protected LinkedList<Integer> lista1;
 	protected LinkedList<Integer> lista2;
 
+	protected LinkedList<Integer> lista3;
+
 	@Before
 	public void setUp() throws Exception {
 

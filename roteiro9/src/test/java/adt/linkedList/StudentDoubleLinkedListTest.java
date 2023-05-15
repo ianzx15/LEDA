@@ -6,7 +6,6 @@ import org.junit.Test;
 
 public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 
-	private DoubleLinkedList<Integer> lista3;
 
 	@Before
 	public void setUp() throws Exception {
@@ -19,12 +18,13 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 		lista1.insert(1);
 
 		// Lista com 1 elemento.
+		lista3.insert(1);
 	}
 
 	private void getImplementations() {
 		lista1 = new DoubleLinkedListImpl<>();
 		lista2 = new DoubleLinkedListImpl<>();
-		lista3 = null;
+		lista3 = new DoubleLinkedListImpl<>();
 	}
 
 	// Métodos de DoubleLinkedList
