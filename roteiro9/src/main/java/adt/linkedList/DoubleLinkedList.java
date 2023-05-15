@@ -2,7 +2,8 @@ package adt.linkedList;
 
 /**
  * The interface of a double linked list with a head and a last (Deque).
- * 
+ * 				RecursiveDoubleLinkedListImpl newItem = new RecursiveDoubleLinkedListImpl();
+
  * @param <T>
  */
 public interface DoubleLinkedList<T> extends LinkedList<T> {
