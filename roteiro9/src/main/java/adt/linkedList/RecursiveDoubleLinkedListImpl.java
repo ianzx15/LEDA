@@ -43,25 +43,29 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 
 	@Override
 	public void removeFirst() {
-			if (!isEmpty()){
-				if (this.getNext().isEmpty()){
-					this.setPrevious(null);
-					this.setData(null);
-					this.setNext(null);
-				} else{
-					this.setData(this.getNext().getData());
-					this.setNext(this.getNext().getNext());
-					((RecursiveDoubleLinkedListImpl<T>) this.getNext()).setPrevious(this);
-				}
-
+		if (!isEmpty()){
+			if (this.getNext().isEmpty()){
+				this.setPrevious(null);
+				this.setData(null);
+				this.setNext(null);
+			} else{
+				this.setData(this.getNext().getData());
+				this.setNext(this.getNext().getNext());
+				((RecursiveDoubleLinkedListImpl<T>) this.getNext()).setPrevious(this);
 			}
-
+		}
 	}
 
 	@Override
 	public void removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!this.isEmpty()) {
+			if (getNext().isEmpty()) {
+				setNext(null);
+				setData(null);
+				} else {
+				((RecursiveDoubleLinkedListImpl) this.getNext()).removeLast();
+				}
+			}
 	}
 
 	public RecursiveDoubleLinkedListImpl<T> getPrevious() {
