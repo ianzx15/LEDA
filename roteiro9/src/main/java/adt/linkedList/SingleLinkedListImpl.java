@@ -64,10 +64,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public void remove(T element) {
 		if (element != null){
 			SingleLinkedListNode aux = getHead();
-			if (getHead().getData().equals(element)){
+			if (getHead().equals(element)){
 				setHead(getHead().getNext());
 			} else{
-				while (!aux.next.isNIL() && aux.getData().equals(element)) {
+				while (!aux.next.isNIL() && !aux.getData().equals(element)) {
 					aux = aux.getNext();
 				}
 				aux.setData(aux.getNext().getData());
