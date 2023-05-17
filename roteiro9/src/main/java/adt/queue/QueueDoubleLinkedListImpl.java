@@ -8,7 +8,7 @@ import java.lang.reflect.Array;
 
 public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 
-	protected DoubleLinkedList<T> list;
+	protected DoubleLinkedListImpl<T> list;
 	protected int size;
 
 	public QueueDoubleLinkedListImpl(int size) {
@@ -19,7 +19,7 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 	@Override
 	public void enqueue(T element) throws QueueOverflowException {
 		if (element != null){
-			if (this.size > list.size()){
+			if (!isFull()){
 				list.insert(element);
 			} else {
 				throw new QueueOverflowException();
@@ -41,11 +41,11 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 
 	@Override
 	public T head() {
-		T element = this.list.toArray()[0];
+		T result = null;
 		if (!isEmpty()){
-			element = this.list.toArray()[0];
+			result = (T) this.list.getHead();
 		}
-		return element;
+		return result;
 	}
 
 	@Override

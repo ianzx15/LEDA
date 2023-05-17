@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import java.util.Arrays;
+
 public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 		DoubleLinkedList<T> {
 
@@ -15,7 +17,9 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 	public void insert (T element){
 		if(element != null){
 			if (isEmpty()){
+				getHead().setNext(new DoubleLinkedListNode<>());
 				getHead().setData(element);
+
 			} else{
 				DoubleLinkedListNode newLast = new DoubleLinkedListNode(element, new DoubleLinkedListNode(), getLast() );
 				getLast().setNext(newLast);

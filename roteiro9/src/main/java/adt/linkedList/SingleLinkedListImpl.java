@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import java.util.Arrays;
+
 public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	protected SingleLinkedListNode<T> head;
@@ -16,13 +18,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public int size() {
 		int size = 0;
-		if (!this.head.isNIL()){
-			SingleLinkedListNode aux = this.getHead();
-
+		SingleLinkedListNode aux = this.head;
 			while (!aux.isNIL()) {
 				aux = aux.getNext();
 				size++;
-			}
 		}
 		return size;
 	}
@@ -48,14 +47,16 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		if(element != null){
 			SingleLinkedListNode auxHead = this.head;
 			if (isEmpty()){
-				SingleLinkedListNode<T> newHead = new SingleLinkedListNode<>(element, this.head);
-				this.head = newHead;
+				auxHead.setData(element);
+				auxHead.setNext(new SingleLinkedListNode());
 		} 	else{
 				while (!auxHead.isNIL()){
 					auxHead = auxHead.getNext();
 				}
-				auxHead.data = element;
-				auxHead.next = new SingleLinkedListNode<>();
+
+				auxHead.setData(element);
+				auxHead.setNext(new SingleLinkedListNode());
+
 			}
 		}
 	}
