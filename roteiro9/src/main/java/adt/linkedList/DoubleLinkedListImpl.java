@@ -74,9 +74,15 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeLast() {
+
 		if (!isEmpty()) {
-			getLast().getPrevious().setNext(new DoubleLinkedListNode<>());
-			setLast(getLast().getPrevious());
+			if (getLast().getPrevious() != null) {
+				getLast().getPrevious().setNext(new DoubleLinkedListNode<>());
+				setLast(getLast().getPrevious());
+			} else{
+				this.getLast().setNext(new DoubleLinkedListNode<>());
+				this.getLast().setData(null);
+			}
 			if (getLast().isNIL()) {
 				setLast((DoubleLinkedListNode<T>) getHead());
 			}

@@ -31,7 +31,7 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 	public T dequeue() throws QueueUnderflowException {
 		T element = null;
 		if (!isEmpty()){
-			element = this.list.toArray()[0];
+			element = (T) this.list.getHead().getData();
 			this.list.removeFirst();
 		} else {
 			throw new QueueUnderflowException();
@@ -43,7 +43,7 @@ public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 	public T head() {
 		T result = null;
 		if (!isEmpty()){
-			result = (T) this.list.getHead();
+			result = (T) this.list.getHead().getData();
 		}
 		return result;
 	}

@@ -26,8 +26,8 @@ public class StudentLinkedListTest {
 	}
 
 	private void getImplementations() {
-		lista1 = new SingleLinkedListImpl<>();
-		lista2 = new SingleLinkedListImpl<>();
+		lista1 = new RecursiveSingleLinkedListImpl<>();
+		lista2 = new RecursiveSingleLinkedListImpl<>();
 	}
 
 	@Test
