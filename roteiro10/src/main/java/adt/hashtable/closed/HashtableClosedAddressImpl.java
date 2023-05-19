@@ -1,8 +1,12 @@
 package adt.hashtable.closed;
 
+import java.util.LinkedList;
+
 import adt.hashtable.hashfunction.HashFunction;
+import adt.hashtable.hashfunction.HashFunctionClosedAddress;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionFactory;
+import util.Util;
 
 public class HashtableClosedAddressImpl<T> extends
 		AbstractHashtableClosedAddress<T> {
@@ -28,6 +32,8 @@ public class HashtableClosedAddressImpl<T> extends
 	 * @param method
 	 */
 
+
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HashtableClosedAddressImpl(int desiredSize,
 			HashFunctionClosedAddressMethod method) {
@@ -52,21 +58,44 @@ public class HashtableClosedAddressImpl<T> extends
 	 * You can use the method Util.isPrime to check if a number is
 	 * prime.
 	 */
+	
+	 private int hash(T element){
+		return ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
+	}
+
 	int getPrimeAbove(int number) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		while (!Util.isPrime(number)) number++;
+		return number;
+
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null && indexOf(element) == -1){
+			int hash = this.hash(element);
+			if (this.table[hash] == null){
+				LinkedList list = new LinkedList<>();
+				list.add(element);
+			} else{
+				((LinkedList) this.table[hash]).add(element);
+				this.COLLISIONS ++;
+			}
+			this.elements ++;
+		}
+		
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null && indexOf(element) != -1){
+			int hash = this.hash(element);
+			((LinkedList) this.table[hash]).remove(element);
+			if (((LinkedList)this.table[hash]).size() > 0){
+				this.COLLISIONS --;
+			}
+			this.elements --;
+		}
+
 	}
 
 	@Override
@@ -77,8 +106,17 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int index = -1;
+		if (element != null){
+			int hash = hash(element);
+			LinkedList list = (LinkedList) this.table[hash];
+			for (int i = 0; i < list.size(); i++){
+				if (list.get(i).equals(element)){
+					index = i;
+				}
+			}
+		}
+		return index;
 	}
 
 }
