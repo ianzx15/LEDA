@@ -71,15 +71,16 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public void insert(T element) {
-		if (element != null && indexOf(element) == -1){
+		if (element != null){
 			int hash = this.hash(element);
-			if (this.table[hash] == null){
-				LinkedList list = new LinkedList<>();
-				list.add(element);
-			} else{
-				((LinkedList) this.table[hash]).add(element);
-				this.COLLISIONS ++;
+			if (this.search(element) == null){
+				if (this.table[hash] == null){
+					this.table[hash] = new LinkedList<>();
+				} else{
+					this.COLLISIONS ++;
+				}
 			}
+			((LinkedList)this.table[hash]).add(element);
 			this.elements ++;
 		}
 		
@@ -89,9 +90,11 @@ public class HashtableClosedAddressImpl<T> extends
 	public void remove(T element) {
 		if (element != null && indexOf(element) != -1){
 			int hash = this.hash(element);
-			((LinkedList) this.table[hash]).remove(element);
-			if (((LinkedList)this.table[hash]).size() > 0){
-				this.COLLISIONS --;
+			if (this.search(element) != null){
+				((LinkedList) this.table[hash]).remove(element);
+				if (((LinkedList)this.table[hash]).size() > 0){
+					this.COLLISIONS --;
+				}
 			}
 			this.elements --;
 		}
@@ -100,21 +103,34 @@ public class HashtableClosedAddressImpl<T> extends
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T item = null;
+		if (element != null && !this.isEmpty()){
+			int hash = this.hash(element);
+			LinkedList list = (LinkedList)this.table[hash];
+			if (list != null){
+				for (int i = 0; i < list.size(); i++){
+					if (list.get(i).equals(element)){
+						item = element;
+					}
+				}
+			}
+		}
+		return item;
 	}
 
 	@Override
 	public int indexOf(T element) {
 		int index = -1;
-		if (element != null){
-			int hash = hash(element);
+		if (element != null && !this.isEmpty()){
+			int hash = this.hash(element);
 			LinkedList list = (LinkedList) this.table[hash];
-			for (int i = 0; i < list.size(); i++){
-				if (list.get(i).equals(element)){
-					index = i;
+			if (list != null){
+				for (int i = 0; i < list.size(); i++){
+					if (list.get(i).equals(element)){
+						index = hash;
+					}
 				}
-			}
+			} 
 		}
 		return index;
 	}
