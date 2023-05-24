@@ -32,7 +32,7 @@ public class StudentQueueTest {
 
 	private void getImplementations() {
 		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = new QueueDoubleLinkedListImpl<>(4);
+		queue1 = new QueueDoubleLinkedListImpl<Integer>(4);
 		queue2 = new QueueDoubleLinkedListImpl<>(2);
 		queue3 = new QueueDoubleLinkedListImpl<>(1);;
 	}
@@ -87,6 +87,8 @@ public class StudentQueueTest {
 		assertEquals(new Integer(2), queue1.dequeue());
 		assertEquals(new Integer(3), queue1.dequeue());
 		queue1.dequeue();
+
+
 
 
 	}

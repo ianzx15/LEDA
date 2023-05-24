@@ -77,7 +77,8 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 		if (!isEmpty()) {
 			if (getLast().getPrevious() != null) {
-				getLast().getPrevious().setNext(new DoubleLinkedListNode<>());
+				getLast().setData(null);
+				// getLast().getPrevious().setNext(new DoubleLinkedListNode<>());
 				setLast(getLast().getPrevious());
 			} else{
 				this.getLast().setNext(new DoubleLinkedListNode<>());
