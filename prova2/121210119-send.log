@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-26T10:12:08.154-0300</date>
+  <logger>IAN EVANGELISTA RODRIGUES</logger>
+  <level>FINE</level>
+  <message>File 121210119-IAN EVANGELISTA RODRIGUES.zip was received. It was sent by IAN EVANGELISTA RODRIGUES from IP 150.165.42.168 at 26-05-2023 10*12*08</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-26T11:36:25.685-0300</date>
+  <logger>IAN EVANGELISTA RODRIGUES</logger>
+  <level>FINE</level>
+  <message>File 121210119-IAN EVANGELISTA RODRIGUES.zip was received. It was sent by IAN EVANGELISTA RODRIGUES from IP 150.165.42.168 at 26-05-2023 11*36*25</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-05-26T11:42:08.727-0300</date>
+  <logger>IAN EVANGELISTA RODRIGUES</logger>
+  <level>FINE</level>
+  <message>File 121210119-IAN EVANGELISTA RODRIGUES.zip was received. It was sent by IAN EVANGELISTA RODRIGUES from IP 150.165.42.168 at 26-05-2023 11*42*08</message>
+</record>
