@@ -97,17 +97,31 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode<T> minimumAux() {
+		BSTNode aux = new BSTNode<>();
 		if (!this.root.isEmpty()){
-			BSTNode aux = new BSTNode<>();
-			while (this.)
+			while (!aux.getLeft().isEmpty()){
+				aux = (BSTNode) aux.getLeft();
+			}
+		} else{
+			return aux;
 		}
 
 	}
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		BSTNode auxElement = new BSTNode<>();
+		if (element != null){
+			if (!auxElement.getRight().isEmpty()){
+				auxElement = ((BST<T>) auxElement).minimum();
+			} else{
+				auxElement = (BSTNode) auxElement.getParent();
+			}
+			while(!auxElement.getParent().isEmpty() && ( ((Comparable<T>) ((BTNode) element).getData()).compareTo( (T) auxElement.getParent().getData())) < 0){
+				auxElement = (BSTNode) auxElement.getParent().getData();
+			}
+		}
+		return auxElement;
 	}
 
 	@Override
