@@ -102,11 +102,10 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			while (!aux.getLeft().isEmpty()){
 				aux = (BSTNode) aux.getLeft();
 			}
-		} else{
-			return aux;
 		}
-
+		return aux;
 	}
+
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
