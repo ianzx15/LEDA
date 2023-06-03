@@ -18,11 +18,20 @@ public class OrderStatisticsHeapImpl<T extends Comparable<T>> implements OrderSt
 	
 	@Override
 	public T getOrderStatistics(T[] array, int k) {
+		T element = null;
 		PriorityQueue<T> heap = new PriorityQueue<T>();
-		//TODO IMplement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (array.length > 0 && k <= array.length){
+
+			for (int i = 0; i <= array.length -1; i++){
+				heap.add(array[i]);
+			}
+			for (int i = 1 ; i <= k -1; i++){
+				heap.remove();
+			}
+
+			element = heap.peek();
+		}
+		return heap.peek();
 	}
 
-	
-	
 }

@@ -109,7 +109,7 @@ public class StudentMaxHeapTest {
 			if (2 * i + 2 < original.length && original[i].compareTo((Integer) original[2 * i + 2]) < 0)
 				isHeap = false;
 		}
-
+	
 		assertTrue(isHeap);
 	}
 
