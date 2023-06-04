@@ -10,14 +10,20 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 	@Override
 	public boolean equals(BST<T> tree1, BST<T> tree2) {
-		
-	} 
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented yet!");
+	}
 	@Override
 	public boolean isSimilar(BST<T> tree1, BST<T> tree2) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented yet!");
 	}
 
 	@Override
 	public T orderStatistic(BST<T> tree, int k) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Not implemented yet!");
 	}
+
 
 }
