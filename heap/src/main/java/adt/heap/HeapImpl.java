@@ -87,16 +87,14 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 		if (!isEmpty() && position <= this.index){
 			int right = this.right(position);
 			int left = this.left(position);
-			int aux;
+			int aux = position;
 
-				if (left < this.size() && comparator.compare(heap[position], heap[left]) > 0){
+				if (left < this.size() && comparator.compare(heap[position], heap[left]) < 0){
 					aux = left;
 	
-				} else{
-					aux = position;
-				} 
-				 
-				if(right < this.size() && comparator.compare(heap[aux], heap[right]) >= 0){
+				}
+
+				if(right < this.size() && comparator.compare(heap[aux], heap[right]) < 0){
 					 aux = right;
 				} 
 				if (aux != position){
@@ -111,18 +109,18 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	@Override
 	public void insert(T element) {
 		// ESSE CODIGO E PARA A HEAP CRESCER SE FOR PRECISO. NAO MODIFIQUE
-		
+
 		if (index == heap.length - 1) {
 			heap = Arrays.copyOf(heap, heap.length + INCREASING_FACTOR);
 		}
 		if (element != null){
 			int aux = ++this.index;
-			while (aux > 0 && this.comparator.compare(element, this.heap[parent(aux)]) < 0){
+			while (aux > 0 && this.comparator.compare(element, this.heap[parent(aux)]) > 0){
 				this.heap[aux] = this.heap[parent(aux)];
 				aux = parent(aux);
 			}
 			this.heap[aux] = element;
-			
+
 		}
 	}
 
@@ -131,10 +129,10 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 @Override
 	public void buildHeap(T[] array) {
 		if (array != null) {
-			this.heap = array;
+			this.heap = array.clone();
 			this.index = array.length - 1;
 
-			for (int i = this.size() / 2; i > -1; i--) {
+			for (int i = this.size() / 2; i >= 0; i--) {
 				heapify(i);
 			}
 		}
@@ -164,15 +162,15 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 				for (int i = index ; i >= 0; i--){
 					array[i] = this.extractRootElement();
 
-				} 
+				}
 			} else{
 				for (int i = 0 ; i < array.length; i++){
 					array[i] = this.extractRootElement();
 
-				} 
+				}
 			}
 		}
-		return array; 
+		return array;
 	}
 
 	@Override
