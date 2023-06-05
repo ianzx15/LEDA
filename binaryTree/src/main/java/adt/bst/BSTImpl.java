@@ -35,77 +35,78 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> search(T element) {
-		BSTNode aux = this.root;
-		if (this.root != null && element != null){
-			while ( aux != null){
-				if (aux.equals(element)){
-					return aux;
-				} else if(element.compareTo((T) aux.getData()) < 0){
-					aux = (BSTNode) aux.getLeft();
-				} else{
-					aux = (BSTNode) aux.getRight();
-				}
-				}
-			}
+		BSTNode aux = null;
+		if (element != null && !this.isEmpty()){
+			aux = auxSearch(element, this.root);
+		}
 		return aux;
 	}
 
+
+	private BSTNode auxSearch(T element, BSTNode node){
+		BSTNode var = null;
+		if (!element.equals(node.getData())) {
+			if (!node.isEmpty() && element.compareTo((T) node.getData()) > 0){
+				auxSearch(element, (BSTNode) node.getRight());
+			} else if (!node.isEmpty() && element.compareTo((T) node.getData()) < 0){
+				auxSearch(element, (BSTNode) node.getLeft());
+			}
+			var = node;
+		}
+		return var;
+	}
+
+
 	@Override
 	public void insert(T element) {
-		boolean inserted = false;
-		if (element != null){
-			if (this.root.isEmpty()){
-				this.root.setData(element);
-			} else{
-				BSTNode aux = this.root;
-				while (!aux.isEmpty() && inserted == false){
-					if (element.compareTo((T) aux.getData()) > 0 ){
-						if (aux.getRight() == null){
-							BSTNode<T> newNode = new BSTNode<T>();
-							newNode.setData(element);
-							aux.setRight(newNode);
-							newNode.setParent(aux);
-							inserted = true;
-						}
-						aux = (BSTNode) aux.getRight();
-					} else{
-						if (aux.getLeft() == null){
-							BSTNode<T> newNode = new BSTNode<T>();
-							newNode.setData(element);
-							aux.setLeft(newNode);
-							newNode.setParent(aux);
-							inserted = true;
+		if (element != null) {
+			auxInsert(element, this.root);
+		}
+	}
 
-						}
 
-						aux = (BSTNode) aux.getLeft();
-					}
-				}
-			}
-
+	private void auxInsert(T element, BSTNode aux){
+		if (aux.isEmpty()) {
+			aux.setData(element);
+			aux.setRight(new BSTNode.Builder().parent(aux).build());
+			aux.setLeft(new BSTNode.Builder().parent(aux).build());
+		} else {
+			if ((element.compareTo((T) aux.getData()) > 0)) {
+				auxInsert(element, (BSTNode) aux.getRight());
+			} else {
+				auxInsert(element, (BSTNode) aux.getLeft());
 			}
 		}
+	}
 
 
 	@Override
 	public BSTNode<T> maximum() {
-		if (this.root.isEmpty()){
-			return null;
+		BSTNode aux = this.root;
+		if (!this.root.isEmpty()){
+			maximumAux(aux);
 		}
-		return this.root;
+		return aux;
+	}
 
+	private BSTNode maximumAux(BSTNode aux){
+		if (!aux.getRight().isEmpty()){
+			maximumAux((BSTNode) aux.getRight());
+		}
+		return aux;
 	}
 
 	public BSTNode<T> minimum(){
-		return minimumAux();
+		BSTNode aux = this.root;
+		if (!this.isEmpty()){
+			minimumAux(aux);
+		}
+		return aux;
 	}
 
-	private BSTNode<T> minimumAux() {
-		BSTNode aux = new BSTNode<>();
-		if (!this.root.isEmpty()){
-			while (!aux.getLeft().isEmpty()){
-				aux = (BSTNode) aux.getLeft();
-			}
+	private BSTNode<T> minimumAux(BSTNode aux) {
+		if (!aux.getLeft().isEmpty()){
+			minimumAux((BSTNode) aux.getLeft());
 		}
 		return aux;
 	}
@@ -150,21 +151,62 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public T[] preOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T[] array = (T[]) new Comparable[this.size()];
+
+		auxPreOrder(this.root, 0, array);
+		return array;
+	}
+
+	private T[] auxPreOrder(BSTNode node, int i, T[] array){
+		if (!node.isEmpty()){
+			array[i] = (T) node.getData();
+			auxPreOrder(((BSTNode) node.getLeft()), i + 1, array);
+			auxPreOrder(((BSTNode) node.getRight()), i + 1, array);
+		}
+		return  array;
 	}
 
 	@Override
 	public T[] order() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T[] array = (T[]) new Comparable[this.size()];
+
+		auxOrder(this.root, 0, array);
+		return array;
 	}
+
+
+	private T[] auxOrder(BSTNode node, int i , T[] array){
+		if (!node.isEmpty()){
+			auxOrder(((BSTNode) node.getLeft()), i + 1, array);
+			array[i] = (T) node.getData();
+			auxOrder(((BSTNode) node.getRight()), i+ 1, array);
+
+		}
+		return  array;
+	}
+
 
 	@Override
 	public T[] postOrder() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T[] array = (T[]) new Comparable[this.size()];
+
+		auxPostOrder(this.root, 0, array);
+		return array;
+
 	}
+
+	private T[] auxPostOrder(BSTNode node, int i , T[] array){
+		if (!node.isEmpty()){
+			auxOrder(((BSTNode) node.getLeft()), i + 1, array);
+			auxOrder(((BSTNode) node.getRight()), i+ 1, array);
+			array[i] = (T) node.getData();
+
+		}
+		return array;
+	}
+
+
+
 
 	/**
 	 * This method is already implemented using recursion. You must understand
