@@ -35,7 +35,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public BSTNode<T> search(T element) {
-		BSTNode aux = null;
+		BSTNode aux = new BSTNode();
 		if (element != null && !this.isEmpty()){
 			aux = auxSearch(element, this.root);
 		}
@@ -44,15 +44,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 
 	private BSTNode auxSearch(T element, BSTNode node){
-		BSTNode var = null;
-		if (!element.equals(node.getData())) {
-			if (!node.isEmpty() && element.compareTo((T) node.getData()) > 0){
-				auxSearch(element, (BSTNode) node.getRight());
+		BSTNode var = new BSTNode();
+			if (element.equals(node.getData()) && !node.isEmpty()) {
+				var = node;
+			} if (!node.isEmpty() && element.compareTo((T) node.getData()) > 0){
+				var = auxSearch(element, (BSTNode) node.getRight());
 			} else if (!node.isEmpty() && element.compareTo((T) node.getData()) < 0){
-				auxSearch(element, (BSTNode) node.getLeft());
+				var = auxSearch(element, (BSTNode) node.getLeft());
 			}
-			var = node;
-		}
 		return var;
 	}
 
@@ -116,10 +115,10 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	public BSTNode<T> sucessor(T element) {
 		BSTNode auxElement = search(element);
 		if (auxElement != null && !this.root.isEmpty() && !auxElement.isEmpty()){
-			if (auxElement.getRight() != null){
-				auxElement = ((BST<T>) auxElement).minimum();
+			if (!auxElement.getRight().isEmpty()){
+				auxElement = minimumAux((BSTNode) auxElement.getRight());
 			} else{
-				auxElement = (BSTNode) auxElement.getParent();
+				auxElement = sucessor((T) auxElement);
 			}
 			while(!auxElement.getParent().isEmpty() && element.compareTo((T) auxElement.getParent().getData()) < 0){
 				auxElement = (BSTNode) auxElement.getParent().getData();
@@ -131,13 +130,14 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	@Override
 	public BSTNode<T> predecessor(T element) {
 		BSTNode aux = search(element);
-		if (!this.isEmpty() && element != null && aux != null ){
+		if (aux != null && !this.root.isEmpty() && !aux.isEmpty()){
 			if (!aux.getLeft().isEmpty()){
-				aux = maximum();
+				aux = maximumAux((BSTNode) aux.getLeft());
 			} else{
-				while (!aux.getParent().isEmpty() && element.compareTo((T) aux.getParent().getData()) < 0 ){
-					aux = (BSTNode) aux.getParent();
-				}
+				aux = predecessor((T) aux);
+			}
+			while (!aux.getParent().isEmpty() && element.compareTo((T) aux.getParent().getData()) < 0 ){
+				aux = (BSTNode) aux.getParent();
 			}
 		}
 		return  aux;
@@ -145,9 +145,49 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null){
+			BSTNode node = search(element);
+				if (!node.isEmpty()){
+					if (node.isLeaf()){
+						node.setData(null);
+
+					} else if( node.getLeft().isEmpty() || node.getRight().isEmpty()){
+						BSTNode parent = (BSTNode) node.getParent();
+						if (!parent.isEmpty()){
+							if (!parent.getLeft().equals(node)){
+								parent.setRight(node.getLeft());
+								node.getLeft().setParent(parent);
+							} else{
+								parent.setRight(node.getRight());
+								node.getRight().setParent(parent);
+							}
+						} else{
+							if (!node.getLeft().isEmpty()){
+								parent.setLeft(node.getLeft());
+								node.getLeft().setParent(parent);
+							} else{
+								parent.setLeft((node.getRight()));
+								node.getRight().setParent(parent);
+							}
+						}
+					} else{
+						if (node.getLeft().isEmpty()){
+							this.root = (BSTNode<T>) node.getRight();
+							this.root.setParent(null);
+						} else{
+							this.root = (BSTNode<T>) node.getLeft();
+							this.root.setParent(null);
+						}
+
+					}
+				}else{
+					T sucessor = sucessor((T) node.getData()).getData();
+					remove(sucessor);
+					node.setData(sucessor);
+				}
+		}
 	}
+
 
 	@Override
 	public T[] preOrder() {
