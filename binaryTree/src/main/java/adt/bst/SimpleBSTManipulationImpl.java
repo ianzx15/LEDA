@@ -11,22 +11,22 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 	@Override
 	public boolean equals(BST<T> tree1, BST<T> tree2) {
 		boolean result = false;
-		if (!tree1.isEmpty() && !tree2.isEmpty()){
-			result = equals((BST<T>) tree1.getRoot(), (BST<T>) tree2.getRoot());
+		if (tree1 != null && tree2 != null){
+			result = auxEquals((BSTNode<T>) tree1.getRoot(), (BSTNode<T>) tree2.getRoot());
 		}
 		return result;
 	}
 
-	private boolean equals(BSTNode<T> node1, BSTNode<T> node2){
+	private boolean auxEquals(BSTNode<T> node1, BSTNode<T> node2){
 		boolean result = false;
-
-		if (node1.isEmpty() && node2.isEmpty()){
+		if (!node1.isEmpty() && !node2.isEmpty()){
+			if (node1.getData() == node2.getData()){
+				result =  auxEquals((BSTNode<T>) node1.getRight(), (BSTNode) node2.getRight()) && auxEquals((BSTNode<T>) node1.getLeft(), (BSTNode<T>) node2.getLeft());
+			}
+		} else if (node1.isEmpty() && node2.isEmpty()){
 			result = true;
-		} else if (node1.equals(node2)){
-			result = this.equals((BSTNode<T>) node1.getLeft(), (BSTNode<T>) node2.getLeft()) && this.equals((BSTNode<T>) node1.getRight(), (BSTNode<T>) node2.getRight());
 		}
-
-		return  result;
+		return result;
 	}
 
 	@Override
