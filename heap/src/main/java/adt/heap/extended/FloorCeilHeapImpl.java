@@ -21,14 +21,6 @@ public class FloorCeilHeapImpl extends HeapImpl<Integer> implements FloorCeilHea
 
 
 	private Integer auxFloor (double num, Integer aux) {
-		Integer raiz = this.extractRootElement();
-		if (raiz != null){
-			if (num >= raiz && (aux == null || aux >= num))
-				aux = this.auxFloor(num, raiz);
-			else
-				aux = this.auxFloor(num, raiz);
-		}
-		return aux;
 
 	}
 	@Override
