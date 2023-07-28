@@ -24,18 +24,25 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	@Override
-	public int height(){
-		return heightAux(this.root);
+	public int height() {
+		return height(this.getRoot());
 	}
 
-	private int heightAux(BSTNode node) {
-		int count = 0;
-		if (!node.isEmpty()){
-			count = 1 + Math.max(heightAux((BSTNode) node.getRight()), heightAux((BSTNode) node.getLeft()));
-		} else {
-			count = -1;
+	public int height(BSTNode<T> node) {
+		int treeHeight = -1;
+
+		if (!node.isEmpty()) {
+			treeHeight = 1 + Math.max(height((BSTNode<T>) node.getLeft()),
+					height((BSTNode<T>) node.getRight()));
 		}
-		return count;
+
+		return treeHeight;
+	}
+
+	protected boolean hasOneChild(BSTNode<T> node) {
+
+		return ((node.getRight().isEmpty() && !node.getLeft().isEmpty()
+				|| node.getLeft().isEmpty() && !node.getRight().isEmpty()));
 	}
 
 	@Override
@@ -95,9 +102,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 	}
 
 	private BSTNode maximumAux(BSTNode aux){
-			if (!aux.getRight().isEmpty()){
-				aux = maximumAux((BSTNode) aux.getRight());
-			}
+		if (!aux.getRight().isEmpty()){
+			aux = maximumAux((BSTNode) aux.getRight());
+		}
 		return aux;
 	}
 
@@ -135,8 +142,8 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	private BSTNode<T> sucessorAux(BSTNode<T> node) {
 		BSTNode<T> sucessor = (BSTNode<T>) node.getParent();
-			if (sucessor != null && sucessor.getRight().equals(node)){
-				sucessor = sucessorAux((BSTNode<T>) node.getParent());
+		if (sucessor != null && sucessor.getRight().equals(node)){
+			sucessor = sucessorAux((BSTNode<T>) node.getParent());
 		}
 		return sucessor;
 
@@ -159,9 +166,9 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	private BSTNode<T> predecessorAux(BSTNode<T> node) {
 		BSTNode<T> predecessor = (BSTNode<T>) node.getParent();
-			if (predecessor != null && predecessor.getLeft().equals(node)){
-				predecessor = predecessorAux((BSTNode<T>) node.getParent());
-			}
+		if (predecessor != null && predecessor.getLeft().equals(node)){
+			predecessor = predecessorAux((BSTNode<T>) node.getParent());
+		}
 		return predecessor;
 	}
 
@@ -265,7 +272,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			postOrderAux((BSTNode<T>) node.getLeft(), array);
 			postOrderAux((BSTNode<T>) node.getRight(), array);
 			array.add(node.getData());
-		  }
+		}
 	}
 
 

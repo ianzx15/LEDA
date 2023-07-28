@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-06-15T10:28:17.709-0300</date>
+  <logger>IAN EVANGELISTA RODRIGUES</logger>
+  <level>FINE</level>
+  <message>File 121210119-IAN EVANGELISTA RODRIGUES.zip was received. It was sent by IAN EVANGELISTA RODRIGUES from IP 192.168.15.12 at 15-06-2023 10*28*17</message>
+</record>
